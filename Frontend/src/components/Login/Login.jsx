@@ -13,13 +13,13 @@ function Login() {
         setMsg({});
 
         try {
-            console.log(email, password);
+            // console.log(email, password);
             await fetch(`${backendUrl}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ })
             })
                 .then(async (res) => {
 
