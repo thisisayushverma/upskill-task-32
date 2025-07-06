@@ -48,7 +48,7 @@ function Read() {
                             <div className="w-full max-w-3xl mt-6 bg-white border rounded-lg p-4 shadow">
                                 <h2 className="text-xl font-semibold mb-2">Parsed Output:</h2>
                                 <pre className="text-sm font-mono text-gray-800 overflow-x-auto whitespace-pre-wrap">
-                                    {JSON.stringify(readDatax, null, 2)}
+                                    {JSON.stringify(readData, null, 2)}
                                 </pre>
                             </div>
                         }
