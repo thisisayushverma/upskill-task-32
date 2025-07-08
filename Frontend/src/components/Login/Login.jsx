@@ -11,15 +11,15 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         setMsg({});
-
+        console.log(JSON.stringify({ email:email, password:password }));
         try {
-            // console.log(email, password);
+            console.log(email, password);
             await fetch(`${backendUrl}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ })
+                body: JSON.stringify({ email:email, password:password })
             })
                 .then(async (res) => {
 

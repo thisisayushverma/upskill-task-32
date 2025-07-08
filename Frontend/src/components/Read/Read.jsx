@@ -23,6 +23,7 @@ function Read() {
             .then(data => {
                 console.log(data);
                 if (data.success === false) {
+                    localStorage.removeItem("auth-key");
                     navigate('/login')
                     return
                 }
@@ -40,8 +41,7 @@ function Read() {
     }, [])
     return (
         <div className='w-full h-full flex items-center justify-center flex-col'>
-            {
-                readData && (
+            { (
                     <h1>
                         {
 
