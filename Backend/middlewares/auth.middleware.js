@@ -1,9 +1,9 @@
 import { decodeToken } from "../utils/token.utils.js";
-import Users  from "../data/data.js";
+import Users from "../data/data.js";
 
-const authenticateUser = (req, res, next)=>{
+const authenticateUser = (req, res, next) => {
     const token = req.headers['authorization'];
-    if(!token){
+    if (!token) {
         return res.status(401).json({
             success: false,
             message: "Unauthenticated"
@@ -11,7 +11,7 @@ const authenticateUser = (req, res, next)=>{
     }
 
     const decoded = decodeToken(token);
-    if(!decoded){
+    if (!decoded) {
         return res.status(401).json({
             success: false,
             message: "Unauthenticated"
@@ -20,7 +20,7 @@ const authenticateUser = (req, res, next)=>{
 
 
     const user = Users.get(decoded.id);
-    if(!user || user.email !== decoded.email){
+    if (!user || user.email !== decoded.email) {
         return res.status(401).json({
             success: false,
             message: "Unauthenticated"

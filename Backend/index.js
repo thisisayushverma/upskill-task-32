@@ -8,12 +8,17 @@ import dotenv from "dotenv";
 
 const reqLogger = (req, res, next) => {
     console.log(req.url,req.method ," -> ");
-    console.log(req.body);
+    console.log("body",req.body);
     next();
 }
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: "*",
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(reqLogger)
@@ -46,6 +51,7 @@ app.post("/register", (req, res) => {
     res.setHeader("Access-Control-Expose-Headers", "Authorization");
 
     Users.set(id, user);
+    Users.forEach((user)=> console.log("user",user));
     res.status(201).json({
         success: true,
         message: "User created successfully",
@@ -63,7 +69,8 @@ app.post("/login", (req, res) => {
 
 
     Users.forEach((user) => {
-        if (user.email === email && user.password === password) {
+        console.log("user",user);
+        if(user.email === email && user.password === password) {
             const token = generateToken({ id: user.id, email: user.email });
             res.setHeader("Authorization", token);
             res.setHeader("Access-Control-Expose-Headers", "Authorization");
