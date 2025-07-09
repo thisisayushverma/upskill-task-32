@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -7,6 +7,13 @@ function Login() {
     const [msg, setMsg] = useState({ type: '', text: '' });
     const backendUrl = import.meta.env.VITE_BACKEND_URL
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        const token = localStorage.getItem("auth-key");
+        if(token!==null){
+            navigate('/')
+        }
+    },[])
 
     const handleLogin = async (e) => {
         e.preventDefault();
